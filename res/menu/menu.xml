@@ -13,6 +13,6 @@
         android:id="@+id/itemRefresh"
         android:title="@string/refresh">
     </item>
-    <item android:id="@+id/itemAccount" android:title="@string/itemAccount"></item>
+    <item android:id="@+id/itemPreferences" android:title="@string/itemPreferences"></item>
 
 </menu>

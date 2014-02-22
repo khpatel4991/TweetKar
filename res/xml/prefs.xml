@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <EditTextPreference
         android:key="@string/userName"
         android:summary="@string/userNameSummary"
         android:title="@string/userName" />
     <EditTextPreference
+        android:inputType="textPassword"
         android:key="@string/password"
         android:summary="@string/passwordSummary"
-        android:title="@string/password"
-        android:inputType="textPassword" />
+        android:title="@string/password" />
     <EditTextPreference
         android:key="@string/serverName"
         android:summary="@string/serverSummary"
-        android:title="@string/serverName"/>
-
+        android:title="@string/serverName" />
+	<ListPreference 
+	    android:key="refreshInterval"
+	    android:summary="@string/refreshIntervalSummary"
+        android:title="@string/refreshInterval" android:entryValues="@array/timeoutIntervals" android:entries="@array/timeoutIntervalsNames"/>
 </PreferenceScreen>

@@ -16,7 +16,27 @@
     <string name="passwordSummary">Enter your Password</string>
     <string name="serverName">Server Name</string>
     <string name="serverSummary"></string>
-    <string name="itemAccount">Account</string>
+    <string name="itemPreferences">Preferences</string>
     <string name="fragmentPrefs">Fragment Preference</string>
+    <string name="refreshInterval">Refresh Interval</string>
+    <string name="refreshIntervalSummary">&quot;Enter Referesh Time(in sec) : Default 10 sec&quot;</string>
+
+    <string-array name="timeoutIntervals">
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>600</item>
+    </string-array>
+    
+    <string-array name="timeoutIntervalsNames">
+        <item>5 s</item>
+        <item>10 s</item>
+        <item>30 s</item>
+        <item>60 s</item>
+        <item>5 m</item>
+        <item>10 m</item>
+    </string-array>
 
 </resources>

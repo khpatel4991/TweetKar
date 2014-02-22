@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,8 +23,6 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-		Debug.startMethodTracing("TweetKar.trace");
 		
 		setContentView(R.layout.status);
 		
@@ -47,7 +44,6 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 	protected void onStop()
 	{
 		super.onStop();
-		Debug.stopMethodTracing();
 	}
 
 
@@ -57,7 +53,7 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 		@Override
 		protected String doInBackground(final String... params)
 		{
-			((TwitterHandle)getApplication()).twitter.setStatus(params[0]);
+			((TwitterHandle)getApplication()).getTwitter().setStatus(params[0]);
 			return "Posted '" + params[0] + "'";
 		}
 
@@ -83,7 +79,7 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		Intent intent = new Intent(this, ServiceUpdater.class);
-		Intent intentRefresh = new Intent(this, ServiceUpdater.class);
+		Intent intentRefresh = new Intent(this, ServiceRefresh.class);
 		Intent intentPrefs = new Intent(this, ActivityPrefs.class);
 		
 		switch(item.getItemId())
@@ -100,7 +96,7 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 			startService(intentRefresh);
 			return true;
 			
-		case R.id.itemAccount:
+		case R.id.itemPreferences:
 			startActivity(intentPrefs);
 			return true;
 		

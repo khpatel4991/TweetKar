@@ -11,12 +11,12 @@ import android.util.Log;
 public class ServiceUpdater extends Service
 {
 	static final String TAG = "ServiceUpdater";
-	
+	public boolean running = false;
+
 	@Override
 	public void onCreate()
 	{
 		super.onCreate();
-		
 		Log.d(TAG, "onCreate()");
 	}
 
@@ -27,10 +27,25 @@ public class ServiceUpdater extends Service
 		{
 			public void run()
 			{
-				List<Status> timeline = ((TwitterHandle)getApplication()).twitter.getPublicTimeline();
-				for (Status i : timeline)
+				running = true;
+				while (running)
 				{
-					Log.d(TAG, String.format("%s: %s", i.user.name, i.text));
+					List<Status> timeline = ((TwitterHandle) getApplication()).getTwitter()
+							.getPublicTimeline();
+					for (Status i : timeline)
+					{
+						Log.d(TAG, String.format("%s: %s", i.user.name, i.text));
+					}
+					int sec = Integer.parseInt(((TwitterHandle)getApplication()).prefs.getString("refreshInterval", "10"));
+					Log.d(TAG, "Refresh Interval is " + sec);
+					int millis = sec * 1000;
+					try
+					{
+						Thread.sleep(millis, 0);
+					} catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
 		}.start();
@@ -42,6 +57,7 @@ public class ServiceUpdater extends Service
 	public void onDestroy()
 	{
 		super.onDestroy();
+		running = false;
 		Log.d(TAG, "onDestroy()");
 	}
 
