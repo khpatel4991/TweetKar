@@ -5,6 +5,7 @@ package com.kashyap.tweetkar;
 import winterwell.jtwitter.Twitter;
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class TwitterHandle extends Application
@@ -17,16 +18,19 @@ public class TwitterHandle extends Application
 	{
 		super.onCreate();
 		
-		/*//Preferences Stuff
+		//Preferences Stuff
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		String username = prefs.getString("username", "");
-		String password = prefs.getString("password", "");
-		String server = prefs.getString("serverName", "");
-*/
+		String username = prefs.getString(getString(R.string.userName), "");
+		String password = prefs.getString(getString(R.string.password), "");
+		String server = prefs.getString(getString(R.string.serverName), "");
+		
+		Log.d(TAG, username);
+		Log.d(TAG, password);
+		Log.d(TAG, server);
 		
 		//Twitter Stuff
-		twitter = new Twitter("student", "password");
-		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
+		twitter = new Twitter(username, password);
+		twitter.setAPIRootUrl(server);
 		
 		Log.d(TAG, "onCreate()");
 	}

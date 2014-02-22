@@ -84,7 +84,8 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 	{
 		Intent intent = new Intent(this, ServiceUpdater.class);
 		Intent intentRefresh = new Intent(this, ServiceUpdater.class);
-		//Intent intentPrefs = new Intent(this, ActivityPrefs.class);
+		Intent intentPrefs = new Intent(this, ActivityPrefs.class);
+		
 		switch(item.getItemId())
 		{
 		case R.id.itemStartService:
@@ -97,9 +98,12 @@ public class ActivityStatusUpdate extends Activity implements OnClickListener
 		
 		case R.id.itemRefresh:
 			startService(intentRefresh);
+			return true;
 			
-		//case R.id.itemAccount:
-			//startActivity(intentPrefs);
+		case R.id.itemAccount:
+			startActivity(intentPrefs);
+			return true;
+		
 		default:
 			return false;
 		}

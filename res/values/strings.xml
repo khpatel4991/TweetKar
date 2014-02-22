@@ -17,5 +17,6 @@
     <string name="serverName">Server Name</string>
     <string name="serverSummary"></string>
     <string name="itemAccount">Account</string>
+    <string name="fragmentPrefs">Fragment Preference</string>
 
 </resources>
